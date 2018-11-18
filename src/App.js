@@ -16,7 +16,7 @@ const styles = theme => ({
     backgroundColor: ''
   },
   searchBar:{
-    marginTop: '16px'
+    marginTop: '16'
   }
 });
 class App extends Component {
@@ -26,10 +26,10 @@ class App extends Component {
     return (<div className="App">
       <header className={classes.appHeader}>
         <Grid container spacing={24}>
-          <Grid item  spacing={4}>
+          <Grid item>
             <img src={logo} className="App-logo" alt="logo" height={30}/>
           </Grid>
-          <Grid item spacing={18}>
+          <Grid item>
             <Search clasName={classes.searchBar}/>
           </Grid>
         </Grid>

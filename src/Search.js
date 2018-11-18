@@ -9,11 +9,10 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-
 const styles = theme => ({
   container: {
     // display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'nowrap'
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -33,12 +32,6 @@ const styles = theme => ({
   },
   submit: {
     marginTop: 16
-  },
-  dense: {
-    marginTop: 16
-  },
-  menu: {
-    width: 200
   }
 });
 
@@ -62,12 +55,12 @@ class Search extends React.Component {
     return (
       this.state.isRenter
       ? <div className={classes.container}>
-        <form  onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <TextField label="Location" className={classes.address} variant="outlined" margin="normal" ref={input => this.search += " " + input}/>
-          <TextField className={classes.textField}variant="outlined" label="Length" InputProps={{
+          <TextField variant="outlined" className={classes.textField} label="Length" InputProps={{
               startAdornment: <InputAdornment position="start">Feet</InputAdornment>
             }} margin="normal" type="number" ref={input => this.search += " " + input}/>
-          <TextField className={classes.textField}variant="outlined" label="Width" InputProps={{
+          <TextField variant="outlined" className={classes.textField} label="Width" InputProps={{
               startAdornment: <InputAdornment position="start">Feet</InputAdornment>
             }} margin="normal" type="number" ref={input => this.search += " " + input}/>
           <TextField className={classes.textField} label="Height" InputProps={{
@@ -77,32 +70,37 @@ class Search extends React.Component {
               shrink: true
             }}/>
           <TextField variant="outlined" label="End Date" type="date" placeholder="" className={classes.date} InputLabelProps={{
-                shrink: true
+              shrink: true
             }}/>
-        <Button variant="outlined" className={classes.submit} type="submit" color="primary" value="Submit">+ Space</Button>
+          <Button variant="outlined" className={classes.submit} type="submit" color="primary" value="Submit">+ Space</Button>
         </form>
-        <FormControlLabel control={
-        <Switch checked={this.state.isRenter} color="primary" onChange={this.handleInputChange}/>
-        }
-        label="Storagelord"
-        />
+        <FormControlLabel control={<Switch checked = {
+            this.state.isRenter
+          }
+          color = "primary" onChange = {
+            this.handleInputChange
+          } />
+} label="Storagelord"/>
 
-  </div> :
-        <div className={classes.container}> <form className={classes.container} onSubmit={this.handleSubmit}><TextField label="Location" className={classes.address} variant="outlined" margin="normal" ref={input => this.search += " " + input}/>
+      </div>
+      : <div className={classes.container}>
+        <form onSubmit={this.handleSubmit}><TextField label="Location" className={classes.address} variant="outlined" margin="normal" ref={input => this.search += " " + input}/>
           <TextField variant="outlined" label="Start Date" type="date" placeholder="" className={classes.date} InputLabelProps={{
               shrink: true
             }}/>
           <TextField variant="outlined" label="End Date" type="date" placeholder="" className={classes.date} InputLabelProps={{
-                shrink: true
+              shrink: true
             }}/>
           <Button variant="outlined" className={classes.submit} type="submit" color="primary" value="Submit">Search</Button>
         </form>
-        <FormControlLabel control={
-        <Switch checked={this.state.isRenter} color="primary" onChange={this.handleInputChange}/>
-        }
-        label="Storagelord"
-        />
-        </div>)
+        <FormControlLabel control={<Switch checked = {
+            this.state.isRenter
+          }
+          color = "primary" onChange = {
+            this.handleInputChange
+          } />
+} label="Storagelord"/>
+      </div>)
 
   }
 }

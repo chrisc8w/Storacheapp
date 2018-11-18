@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import ReactMapGL, {Marker} from 'react-map-gl';
-import logo from '../IMG_1039.PNG';
+import ReactMapGL, {Popup, Marker} from 'react-map-gl';
 import pic from '../openBox-512.png';
 
 class Map extends Component {
@@ -12,8 +11,6 @@ class Map extends Component {
       latitude: 37.8,
       longitude: -96,
       zoom: 4
-      // latitude: 35.9940,
-      // longitude: -78.8986,
     }
   };
 
@@ -24,6 +21,7 @@ class Map extends Component {
   _locateUser() {
     var copyViewport = {...this.state.viewport}
     navigator.geolocation.getCurrentPosition(position => {
+      alert("ready to geolocate???!!");
       copyViewport.latitude = position.coords.latitude;
       copyViewport.longitude = position.coords.longitude;
       copyViewport.zoom = 10;
@@ -40,6 +38,7 @@ class Map extends Component {
         onViewportChange={(viewport) => this.setState({viewport})}
         mapboxApiAccessToken="pk.eyJ1IjoibGl2c2VpYmVydCIsImEiOiJjam9seXMyd3kwcm5oM3Fsc2ZrY2hmMHpsIn0.mLpNtHAeDGdxUKw9H4OWPw"
         >
+
         <Marker latitude={36.0014} longitude={-78.9382} offsetLeft={-20} offsetTop={-10}>
           <img src={pic} alt="logo" height={30}/>
         </Marker>
@@ -52,6 +51,10 @@ class Map extends Component {
         <Marker latitude={36.08347} longitude={-79.0136} offsetLeft={-20} offsetTop={-10}>
           <img src={pic} alt="logo" height={30}/>
         </Marker>
+
+        {/* <Popup latitude={this.state.viewport.latitude} longitude={this.state.viewport.longitude} closeButton={true} closeOnClick={false} anchor="top">
+          <div>You are here</div>
+        </Popup> */}
       </ReactMapGL>
       
     );

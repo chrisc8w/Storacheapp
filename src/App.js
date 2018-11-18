@@ -34,7 +34,7 @@ class App extends Component {
           </Grid>
         </Grid>
       </header>
-      <Map/>
+      <Map />
     </div>);
   }
 }

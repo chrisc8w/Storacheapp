@@ -9,11 +9,29 @@ class Map extends Component {
     viewport: {
       width: 1300,
       height: 600,
-      latitude: 35.9940,
-      longitude: -78.8986,
-      zoom: 10
+      latitude: 37.8,
+      longitude: -96,
+      zoom: 4
+      // latitude: 35.9940,
+      // longitude: -78.8986,
     }
   };
+
+  componentDidMount() {
+    setTimeout(() => this._locateUser(), 3000);
+  }
+
+  _locateUser() {
+    var copyViewport = {...this.state.viewport}
+    navigator.geolocation.getCurrentPosition(position => {
+      copyViewport.latitude = position.coords.latitude;
+      copyViewport.longitude = position.coords.longitude;
+      copyViewport.zoom = 10;
+      this.setState({
+        viewport: copyViewport
+      });
+    });
+  }
 
   render() {
     return (
@@ -35,6 +53,7 @@ class Map extends Component {
           <img src={pic} alt="logo" height={30}/>
         </Marker>
       </ReactMapGL>
+      
     );
   }
 }

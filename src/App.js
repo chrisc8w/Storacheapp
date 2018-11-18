@@ -25,11 +25,11 @@ class App extends Component {
 
     return (<div className="App">
       <header className={classes.appHeader}>
-        <Grid container="container" spacing={24}>
-          <Grid item="item" spacing={4}>
+        <Grid container spacing={24}>
+          <Grid item  spacing={4}>
             <img src={logo} className="App-logo" alt="logo" height={30}/>
           </Grid>
-          <Grid item="item" spacing={18}>
+          <Grid item spacing={18}>
             <Search clasName={classes.searchBar}/>
           </Grid>
         </Grid>

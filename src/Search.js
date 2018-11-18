@@ -1,71 +1,113 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
 const styles = theme => ({
   container: {
-    //display: 'flex',
-    flexWrap: 'wrap',
+    // display: 'flex',
+    flexWrap: 'wrap'
   },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: '12%'
+    width: '5%'
   },
   address: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: '35%'
+    width: '27.5%'
   },
-  submit:{
+  date: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: '12.5%',
+    marginTop: 16
+  },
+  submit: {
     marginTop: 16
   },
   dense: {
-    marginTop: 16,
+    marginTop: 16
   },
   menu: {
-    width: 200,
-  },
+    width: 200
+  }
 });
 
 class Search extends React.Component {
   state = {
-    query: ''
+    query: '',
+    isRenter: true
   }
 
   handleInputChange = () => {
-    this.setState({query: this.search.value})
+    this.setState({
+      isRenter: !this.state.isRenter
+    });
+    console.log(this.state.isRenter);
   }
 
   handleSubmit = () => {}
 
   render() {
-    const { classes } = this.props;
+    const {classes} = this.props;
     return (
-      <form className={classes.container} onSubmit={this.handleSubmit}>
-      <TextField label="Location" className={classes.address} variant="outlined" margin="normal" ref={input => this.search += " " + input}/>
-      <TextField label="Length"  InputProps={{
-            startAdornment: <InputAdornment position="start">Feet</InputAdornment>,
-          }}className={classes.textField}variant="outlined" margin="normal" type="number" ref={input => this.search += " " + input}/>
-      <TextField label="Width" InputProps={{
-            startAdornment: <InputAdornment position="start">Feet</InputAdornment>,
-          }}className={classes.textField}variant="outlined" margin="normal" type="number" ref={input => this.search += " " + input}/>
-      <TextField label="Height" InputProps={{
-            startAdornment: <InputAdornment position="start">Feet</InputAdornment>,
-          }}className={classes.textField} variant="outlined" margin="normal" type="number" ref={input => this.search += " " + input}/>
-        <Button variant="outlined" className={classes.submit} type="submit" color="primary" value="Submit">Search</Button>
-    </form>)
+      this.state.isRenter
+      ? <div className={classes.container}>
+        <form  onSubmit={this.handleSubmit}>
+          <TextField label="Location" className={classes.address} variant="outlined" margin="normal" ref={input => this.search += " " + input}/>
+          <TextField className={classes.textField}variant="outlined" label="Length" InputProps={{
+              startAdornment: <InputAdornment position="start">Feet</InputAdornment>
+            }} margin="normal" type="number" ref={input => this.search += " " + input}/>
+          <TextField className={classes.textField}variant="outlined" label="Width" InputProps={{
+              startAdornment: <InputAdornment position="start">Feet</InputAdornment>
+            }} margin="normal" type="number" ref={input => this.search += " " + input}/>
+          <TextField className={classes.textField} label="Height" InputProps={{
+              startAdornment: <InputAdornment position="start">Feet</InputAdornment>
+            }} variant="outlined" margin="normal" type="number" ref={input => this.search += " " + input}/>
+          <TextField variant="outlined" label="Start Date" type="date" placeholder="" className={classes.date} InputLabelProps={{
+              shrink: true
+            }}/>
+          <TextField variant="outlined" label="End Date" type="date" placeholder="" className={classes.date} InputLabelProps={{
+                shrink: true
+            }}/>
+        <Button variant="outlined" className={classes.submit} type="submit" color="primary" value="Submit">+ Space</Button>
+        </form>
+        <FormControlLabel control={
+        <Switch checked={this.state.isRenter} color="primary" onChange={this.handleInputChange}/>
+        }
+        label="Storagelord"
+        />
+
+  </div> :
+        <div className={classes.container}> <form className={classes.container} onSubmit={this.handleSubmit}><TextField label="Location" className={classes.address} variant="outlined" margin="normal" ref={input => this.search += " " + input}/>
+          <TextField variant="outlined" label="Start Date" type="date" placeholder="" className={classes.date} InputLabelProps={{
+              shrink: true
+            }}/>
+          <TextField variant="outlined" label="End Date" type="date" placeholder="" className={classes.date} InputLabelProps={{
+                shrink: true
+            }}/>
+          <Button variant="outlined" className={classes.submit} type="submit" color="primary" value="Submit">Search</Button>
+        </form>
+        <FormControlLabel control={
+        <Switch checked={this.state.isRenter} color="primary" onChange={this.handleInputChange}/>
+        }
+        label="Storagelord"
+        />
+        </div>)
 
   }
 }
 Search.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Search);

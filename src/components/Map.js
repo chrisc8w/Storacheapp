@@ -25,6 +25,15 @@ class Map extends Component {
         <Marker latitude={36.0014} longitude={-78.9382} offsetLeft={-20} offsetTop={-10}>
           <img src={pic} alt="logo" height={30}/>
         </Marker>
+        <Marker latitude={36.0104} longitude={-78.218} offsetLeft={-20} offsetTop={-10}>
+          <img src={pic} alt="logo" height={30}/>
+        </Marker>
+        <Marker latitude={36.0443} longitude={-78.603} offsetLeft={-20} offsetTop={-10}>
+          <img src={pic} alt="logo" height={30}/>
+        </Marker>
+        <Marker latitude={36.08347} longitude={-79.0136} offsetLeft={-20} offsetTop={-10}>
+          <img src={pic} alt="logo" height={30}/>
+        </Marker>
       </ReactMapGL>
     );
   }
